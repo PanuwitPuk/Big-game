@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>The Weakest Link Tracker - Light Theme</title>
+    <title>Knock Out Tracker</title>
     <style>
         html,
         body {
@@ -13,7 +13,7 @@
             width: 100%;
             font-family: 'Segoe UI', sans-serif;
             background: #f7f7f7;
-            color: #333;
+            color: #f0f0f0;
         }
 
         body {
@@ -21,10 +21,14 @@
             grid-template-columns: 20% 80%;
             height: 100vh;
             width: 100vw;
+            background-image: url('/img/game_bg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: none;
         }
 
         .left-panel {
-
             display: flex;
             flex-direction: column;
             background: #ffffff;
@@ -34,16 +38,13 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             margin: 20px;
             height: calc(100vh - 40px);
-            background-image: url('./img/marble_bg.jpg');
+            background-image: url('/img/marble_bg.jpg');
             background-size: cover;
-            /* Makes the background fill while keeping aspect ratio */
             background-repeat: no-repeat;
             background-position: center;
             border: none;
-            /* Remove the old right border */
+
         }
-
-
 
         .left-panel h2 {
             font-size: 2rem;
@@ -54,50 +55,57 @@
         }
 
         .card-column {
+            flex: 8;
             display: flex;
             flex-direction: column;
             gap: 10px;
+            overflow-y: auto;
+
         }
 
         .card {
-            background-color: #ffffff;
             border: 1px solid #ddd;
             border-radius: 10px;
             padding: 12px 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 5px rgb(227, 227, 227);
+
         }
 
-
+        .card-action-wrapper {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            height: 100%;
+        }
 
         .player-card {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
             text-align: left;
             font-weight: 700;
-            font-size: 17px;
-            cursor: default;
+            font-size: 2.4vh;
             user-select: none;
             transition: transform 0.2s;
+            flex: 8;
+            overflow: hidden;
         }
 
+
         .player-card.phoenix-card {
-            background-image: url('./img/phoenix.png');
+            background-image: url('/img/phoenix.png');
             background-repeat: no-repeat;
-            background-size: 100px;
-            /* adjust size as needed */
+            background-size: 12vh;
             background-position: right center;
-            background-color: #fff;
-            /* optional background color */
             color: #333;
-            /* adjust text color if needed */
             text-shadow: none;
-            /* optional: remove if not needed */
             padding-right: 70px;
-            /* prevent text overlap with image */
         }
 
         .player-card.unicorn-card {
-            background-image: url('./img/unicorn.png');
+            background-image: url('/img/unicorn.png');
             background-repeat: no-repeat;
-            background-size: 100px;
+            background-size: 12vh;
             background-position: right 45%;
             background-color: #fff;
             color: #333;
@@ -106,9 +114,9 @@
         }
 
         .player-card.dragon-card {
-            background-image: url('./img/dragon.png');
+            background-image: url('/img/dragon.png');
             background-repeat: no-repeat;
-            background-size: 110px;
+            background-size: 12vh;
             background-position: right 60%;
             background-color: #fff;
             color: #333;
@@ -117,9 +125,9 @@
         }
 
         .player-card.centaur-card {
-            background-image: url('./img/centaur.png');
+            background-image: url('/img/centaur.png');
             background-repeat: no-repeat;
-            background-size: 100px;
+            background-size: 11vh;
             background-position: right 10%;
             background-color: #fff;
             color: #333;
@@ -128,9 +136,9 @@
         }
 
         .player-card.werewolf-card {
-            background-image: url('./img/werewolf.png');
+            background-image: url('/img/werewolf.png');
             background-repeat: no-repeat;
-            background-size: 90px;
+            background-size: 11vh;
             background-position: right center;
             background-color: #fff;
             color: #333;
@@ -139,9 +147,9 @@
         }
 
         .player-card.pixie-card {
-            background-image: url('./img/pixie.png');
+            background-image: url('/img/pixie.png');
             background-repeat: no-repeat;
-            background-size: 90px;
+            background-size: 11vh;
             background-position: right 30%;
             background-color: #fff;
             color: #333;
@@ -150,10 +158,10 @@
         }
 
         .player-card.hippogriff-card {
-            background-image: url('./img/hippogriff.png');
+            background-image: url('/img/hippogriff.png');
             background-repeat: no-repeat;
-            background-size: 80px;
-            background-position: right 35%;
+            background-size: 11vh;
+            background-position: right 25%;
             background-color: #fff;
             color: #333;
             text-shadow: none;
@@ -161,9 +169,9 @@
         }
 
         .player-card.basilisk-card {
-            background-image: url('./img/basilisk.png');
+            background-image: url('/img/basilisk.png');
             background-repeat: no-repeat;
-            background-size: 75px;
+            background-size: 12vh;
             background-position: right 20%;
             background-color: #fff;
             color: #333;
@@ -185,18 +193,17 @@
         }
 
         .action-card {
-            margin: 10px 0;
+            flex: 2;
             display: flex;
             align-items: center;
-            gap: 12px;
-            height: 100px;
-            border: none;
             justify-content: center;
-            font-size: 30px;
+            margin: 10px 0;
             font-weight: bold;
             padding: 10px;
             color: #7d7d7d;
             opacity: 0.8;
+            font-size: 4vh;
+
         }
 
         .reward-image {
@@ -217,16 +224,15 @@
             flex-direction: column;
             justify-content: flex-start;
             overflow-y: auto;
-            background-color: #f9f9f9;
+            background-color: none;
         }
 
         h1 {
             margin: 0 0 30px 0;
             text-align: center;
             font-weight: bold;
-            font-size: 2.5rem;
-
-            background: linear-gradient(to right, #914f0e, #fbc02d);
+            font-size: 3.5rem;
+            background: linear-gradient(to right, #b95d00, #fbc02d);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
 
@@ -271,6 +277,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            overflow-y: hidden;
+            overflow-x: auto;
 
             padding: 15px;
             border-radius: 12px;
@@ -280,19 +288,19 @@
 
         .reward-step {
             display: inline-block;
-            background: #f0f0f0;
+            background: #ddd;
             color: #333;
             font-weight: bold;
-            padding: 15px 40px;
+            padding: 2vh 3vw;
             border-radius: 8px;
-            font-size: 20px;
+            font-size: 2.4vh;
             white-space: nowrap;
             transition: all 0.3s ease;
             border: 2px solid transparent;
         }
 
         .reward-step.active {
-            background: #ffd700;
+            background: #fbc02d;
             color: #111;
             box-shadow: 0 0 10px rgba(255, 193, 7, 0.6);
             transform: scale(1.05);
@@ -308,43 +316,59 @@
         }
 
         .timer-display {
-            font-size: 150px;
+            font-size: 20vh;
             font-weight: bold;
-            color: #222;
+            color: #f0f0f0;
             margin-bottom: 30px;
             transition: transform 0.4s ease, opacity 0.4s ease;
         }
 
-        .timer-buttons button {
+        .timer-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            height: 60px;
+        }
+
+        #toggleBtn {
             padding: 12px 24px;
-            margin: 0 10px;
             font-size: 20px;
-            background-color: #ca9a0b;
-            color: white;
+            font-weight: bold;
+            background-color: #a81b02;
+            color: #f0f0f0;
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-grow: 1;
+            justify-content: center;
+            max-width: 200px;
         }
 
-        .timer-buttons button:hover {
-            background-color: #ae860f;
+        #toggleBtn:hover {
+            background-color: #811502;
+        }
+        #resetBtn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            flex-shrink: 0;
+            margin-left: 15px;
+
         }
 
-        .timer-buttons button i {
-            font-size: 28px;
-            vertical-align: middle;
+        .icon-only {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
             pointer-events: none;
         }
 
 
-        .timer-buttons button i {
-            font-size: 28px;
-            vertical-align: middle;
-            pointer-events: none;
-            /* So clicks are on button, not icon */
-
-        }
 
         .prize-bar-wrapper {
             display: flex;
@@ -379,7 +403,7 @@
             font-weight: bold;
             transition: left 0.4s ease;
             white-space: nowrap;
-            color: #333;
+            color: #f0f0f0;
         }
 
         .checkpoints {
@@ -421,6 +445,42 @@
             border-right: 6px solid transparent;
             border-bottom: 6px solid rgb(222, 185, 0);
         }
+
+        @media (max-width: 600px) {
+            .left-panel {
+                margin: 10px;
+                height: calc(100vh - 20px);
+            }
+
+            .player-card {
+                font-size: 15px;
+                padding-right: 50px;
+                background-size: 70px;
+            }
+
+            .action-card {
+                font-size: 14px;
+                padding: 8px;
+            }
+        }
+
+        @media (min-width: 601px) and (max-width: 1200px) {
+            .left-panel {
+                margin: 15px;
+                height: calc(100vh - 30px);
+            }
+
+            .player-card {
+                font-size: 2vh;
+                padding-right: 60px;
+                background-size: 80px;
+            }
+
+            .action-card {
+                font-size: 3vh;
+                padding: 9px;
+            }
+        }
     </style>
 </head>
 
@@ -428,45 +488,50 @@
 
     <div class="left-panel">
         <h2>SURVIVOR</h2>
-        <div id="players" class="card-column"></div>
 
-        <div id="action" class="action-card">
-            <div>NONE</div>
+        <div class="card-action-wrapper">
+            <div id="players" class="card-column"></div>
+            <div id="action" class="action-card">
+                <div>NONE</div>
+            </div>
         </div>
     </div>
 
     <div class="right-panel">
-        <h1>The Weakest Link Tracker</h1>
+        <h1>Knock Out Tracker</h1>
 
         <div class="status" id="status">
-            Prize Pot: £0 | Current Chain: 0
+            Prize Pot: 0 | Current Chain: 0
         </div>
         <div class="prize-bar-wrapper">
-            <div class="prize-bar-label" id="prizeBarLabel">£0</div>
+            <div class="prize-bar-label" id="prizeBarLabel">0</div>
             <div class="prize-bar-track" id="prizeBarTrack">
                 <div class="prize-bar-fill" id="prizeBarFill"></div>
             </div>
             <div class="checkpoints" id="checkpoints">
-                <span class="checkpoint" data-threshold="100">£100</span>
-                <span class="checkpoint" data-threshold="200">£200</span>
-                <span class="checkpoint" data-threshold="300">£300</span>
-                <span class="checkpoint" data-threshold="400">£400</span>
+                <span class="checkpoint" data-threshold="200">200</span>
+                <span class="checkpoint" data-threshold="250">250</span>
+                <span class="checkpoint" data-threshold="300">300</span>
+                <span class="checkpoint" data-threshold="450">450</span>
+                <span class="checkpoint" data-threshold="500">500</span>
+                <span class="checkpoint" data-threshold="550">550</span>
+                <span class="checkpoint" data-threshold="700">700</span>
             </div>
         </div>
         <div class="reward-bar">
-            <span class="reward-step" data-value="50">£0</span>
-            <span class="reward-step" data-value="50">£50</span>
-            <span class="reward-step" data-value="100">£100</span>
-            <span class="reward-step" data-value="200">£200</span>
-            <span class="reward-step" data-value="300">£400</span>
-            <span class="reward-step" data-value="500">£800</span>
-            <span class="reward-step" data-value="1000">£1600</span>
+            <span class="reward-step" data-value="50">0</span>
+            <span class="reward-step" data-value="50">50</span>
+            <span class="reward-step" data-value="100">100</span>
+            <span class="reward-step" data-value="200">200</span>
+            <span class="reward-step" data-value="300">400</span>
+            <span class="reward-step" data-value="500">800</span>
+            <span class="reward-step" data-value="1000">1600</span>
         </div>
 
         <div class="controls">
-            <button id="btnCorrect"><img src="./img/correct.png" alt="Correct"></button>
-            <button id="btnBank"><img src="./img/save.png" alt="Bank"></button>
-            <button id="btnIncorrect"><img src="./img/wrong.png" alt="Wrong"></button>
+            <button id="btnCorrect"><img src="/img/correct.png" alt="Correct"></button>
+            <button id="btnBank"><img src="/img/save.png" alt="Bank"></button>
+            <button id="btnIncorrect"><img src="/img/wrong.png" alt="Wrong"></button>
         </div>
 
         <div class="timer-section">
@@ -474,9 +539,14 @@
                 <span id="timerDisplay">02:00</span>
             </div>
             <div class="timer-buttons">
-                <button id="toggleBtn" title="Start/Pause">Start</button>
-                <button id="resetBtn" title="Reset">Reset</button>
+                <button id="toggleBtn" title="Start/Pause">
+                    <img id="toggleIcon" src="/img/battle.png" alt="Start/Pause" class="icon-only" />
+                    Battle</button>
+                <button id="resetBtn" title="Reset">
+                    <img src="/img/reset.png" alt="Reset" class="icon-only" />
+                </button>
             </div>
+
 
 
         </div>
@@ -513,13 +583,12 @@
             players.forEach((p, index) => {
                 const div = document.createElement('div');
 
-                // Always include base classes
                 div.classList.add('card', 'player-card', `${p.race}-card`);
 
                 if (p.alive) {
                     div.classList.add('alive');
                 } else {
-                    div.classList.add('eliminated', 'eliminate'); // Add eliminate class
+                    div.classList.add('eliminated', 'eliminate');
                 }
 
                 div.textContent = p.name;
@@ -527,13 +596,11 @@
 
                 // Optional: Allow click-to-eliminate
                 div.addEventListener('click', () => eliminatePlayer(index));
-
                 playersContainer.appendChild(div);
             });
         }
 
         function eliminatePlayer(index) {
-            // Toggle the player's alive status
             players[index].alive = !players[index].alive;
 
             renderPlayers();
@@ -545,7 +612,7 @@
         document.addEventListener('keydown', (e) => {
             const key = parseInt(e.key);
             if (key >= 1 && key <= players.length) {
-                eliminatePlayer(key - 1); // Index is key - 1
+                eliminatePlayer(key - 1);
             }
         });
 
@@ -560,7 +627,7 @@
             fill.style.width = `${percentage}%`;
 
             // Update label text
-            label.textContent = `£${prizePot}`;
+            label.textContent = `${prizePot}`;
 
             // Move label to match fill
             requestAnimationFrame(() => {
@@ -599,7 +666,7 @@
         }
 
         function updateStatus() {
-            statusDiv.textContent = `Round ${round} | Prize Pot: £${prizePot} | Current Chain: ${currentChain}`;
+            statusDiv.textContent = `Round ${round} | Score: ${prizePot} | Current Chain: ${currentChain}`;
 
             function updateRewardSteps() {
                 const steps = document.querySelectorAll('.reward-step');
@@ -638,18 +705,20 @@
 
         // ==== VARIABLES ====
         let timerInterval;
-        let timeLeft = 120;      // in seconds (2 minutes)
+        let timeLeft = 120;
         let isRunning = false;
 
-        // grab elements
         const timerDisplay = document.getElementById('timerDisplay');
         const timerDisplayWrapper = document.querySelector('.timer-display');
         const toggleBtn = document.getElementById('toggleBtn');
         const toggleIcon = document.getElementById('toggleIcon');
         const resetBtn = document.getElementById('resetBtn');
-        
+
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') btnBank.click();
+            if (e.key === 'Enter'){
+                e.preventDefault();
+                btnBank.click();
+        }
             if (e.key === 'ArrowRight') btnCorrect.click();
             if (e.key === 'ArrowLeft') btnIncorrect.click();
         });
@@ -659,9 +728,14 @@
             const min = String(Math.floor(timeLeft / 60)).padStart(2, '0');
             const sec = String(timeLeft % 60).padStart(2, '0');
             timerDisplay.textContent = `${min}:${sec}`;
+
+            if (timeLeft <= 10) {
+                timerDisplay.style.color = '#ff0000';
+            } else {
+                timerDisplay.style.color = '';
+            }
         }
 
-        // optional: animate slide in/out
         function animateTimerChange() {
             timerDisplayWrapper.classList.add('slide-out');
             setTimeout(() => {
@@ -679,8 +753,7 @@
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
                     isRunning = false;
-                    toggleBtn.textContent = 'Start'; // plain text
-
+                    toggleBtn.innerHTML = '<img id="toggleIcon" src="/img/battle.png" alt="Start/Pause" class="icon-only" /> Battle';
                     round++;
                     prizePot += prizeLevels[currentChain];
                     currentChain = 0;
@@ -701,10 +774,11 @@
             if (isRunning) {
                 clearInterval(timerInterval);
                 isRunning = false;
-                toggleBtn.textContent = 'Start'; // plain text
+                showAction(`Paused`);
+                toggleBtn.innerHTML = '<img id="toggleIcon" src="/img/battle.png" alt="Start/Pause" class="icon-only" /> Battle';
             } else {
                 isRunning = true;
-                toggleBtn.textContent = 'Pause'; // plain text
+                toggleBtn.innerHTML = '<img id="toggleIcon" src="/img/pause.png" alt="Start/Pause" class="icon-only" /> Pause';
                 startTimer();
             }
         }
@@ -712,10 +786,10 @@
         function resetTimer() {
             clearInterval(timerInterval);
             isRunning = false;
-            timeLeft = 10;
-            toggleBtn.textContent = 'Start'; // plain text
+            timeLeft = 120;
+            toggleBtn.innerHTML = '<img id="toggleIcon" src="/img/battle.png" alt="Start/Pause" class="icon-only" /> Battle';
             animateTimerChange();
-            showAction(`Reset Timer`);
+            showAction(`Reset`);
         }
 
         // ==== EVENT LISTENERS ====
