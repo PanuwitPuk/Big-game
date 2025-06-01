@@ -22,7 +22,7 @@
             grid-template-columns: 20% 80%;
             height: 100vh;
             width: 100vw;
-            background-image: url('/img/game_bg.jpg');
+            background-image: url('./img/game_bg.jpg');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
@@ -39,7 +39,7 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             margin: 20px;
             height: calc(100vh - 40px);
-            background-image: url('/img/marble_bg.jpg');
+            background-image: url('./img/marble_bg.jpg');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
@@ -95,7 +95,7 @@
 
 
         .player-card.phoenix-card {
-            background-image: url('/img/phoenix.png');
+            background-image: url('./img/phoenix.png');
             background-repeat: no-repeat;
             background-size: 12vh;
             background-position: right center;
@@ -106,7 +106,7 @@
         }
 
         .player-card.unicorn-card {
-            background-image: url('/img/unicorn.png');
+            background-image: url('./img/unicorn.png');
             background-repeat: no-repeat;
             background-size: 12vh;
             background-position: right 45%;
@@ -117,7 +117,7 @@
         }
 
         .player-card.dragon-card {
-            background-image: url('/img/dragon.png');
+            background-image: url('./img/dragon.png');
             background-repeat: no-repeat;
             background-size: 12vh;
             background-position: right 60%;
@@ -128,7 +128,7 @@
         }
 
         .player-card.centaur-card {
-            background-image: url('/img/centaur.png');
+            background-image: url('./img/centaur.png');
             background-repeat: no-repeat;
             background-size: 11vh;
             background-position: right 10%;
@@ -139,7 +139,7 @@
         }
 
         .player-card.werewolf-card {
-            background-image: url('/img/werewolf.png');
+            background-image: url('./img/werewolf.png');
             background-repeat: no-repeat;
             background-size: 11vh;
             background-position: right center;
@@ -150,7 +150,7 @@
         }
 
         .player-card.pixie-card {
-            background-image: url('/img/pixie.png');
+            background-image: url('./img/pixie.png');
             background-repeat: no-repeat;
             background-size: 11vh;
             background-position: right 30%;
@@ -161,7 +161,7 @@
         }
 
         .player-card.hippogriff-card {
-            background-image: url('/img/hippogriff.png');
+            background-image: url('./img/hippogriff.png');
             background-repeat: no-repeat;
             background-size: 11vh;
             background-position: right 25%;
@@ -172,7 +172,7 @@
         }
 
         .player-card.basilisk-card {
-            background-image: url('/img/basilisk.png');
+            background-image: url('./img/basilisk.png');
             background-repeat: no-repeat;
             background-size: 12vh;
             background-position: right 20%;
@@ -454,7 +454,7 @@
             top: 20%;
             left: 50%;
             transform: translateX(-50%);
-            background-image: url('/img/marble_bg.jpg');
+            background-image: url('./img/marble_bg.jpg');
             border-radius: 15px;
             z-index: 2;
         }
@@ -470,7 +470,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-image: url('/img/marble_bg.jpg');
+            background-image: url('./img/marble_bg.jpg');
             border-radius: 15px;
             z-index: 2;
             max-height: 80vh;
@@ -706,9 +706,9 @@
         </div>
 
         <div class="controls">
-            <button id="btnCorrect"><img src="/img/correct.png" alt="Correct"></button>
-            <button id="btnBank"><img src="/img/save.png" alt="Bank"></button>
-            <button id="btnIncorrect"><img src="/img/wrong.png" alt="Wrong"></button>
+            <button id="btnCorrect"><img src="./img/correct.png" alt="Correct"></button>
+            <button id="btnBank"><img src="./img/save.png" alt="Bank"></button>
+            <button id="btnIncorrect"><img src="./img/wrong.png" alt="Wrong"></button>
         </div>
 
         <div class="timer-section">
@@ -717,10 +717,10 @@
             </div>
             <div class="timer-buttons">
                 <button id="toggleBtn" title="Start/Pause">
-                    <img id="toggleIcon" src="/img/battle.png" alt="Start/Pause" class="icon-only" />
+                    <img id="toggleIcon" src="./img/battle.png" alt="Start/Pause" class="icon-only" />
                     Battle</button>
                 <button id="resetBtn" title="Reset">
-                    <img src="/img/reset.png" alt="Reset" class="icon-only" />
+                    <img src="./img/reset.png" alt="Reset" class="icon-only" />
                 </button>
             </div>
         </div>
@@ -733,7 +733,7 @@
             <div id="modalPlayer1" class="hidden player-card"></div>
             <div class="player-divider">
                 <span class="line"></span>
-                <span><img id="toggleIcon" src="/img/battle_dark.png" class="icon-only" /></span>
+                <span><img id="toggleIcon" src="./img/battle_dark.png" class="icon-only" /></span>
                 <span class="line"></span>
             </div>
             <div id="modalPlayer2" class="hidden player-card"></div>
@@ -1066,7 +1066,7 @@
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
                     isRunning = false;
-                    toggleBtn.innerHTML = '<img id="toggleIcon" src="/img/battle.png" alt="Start/Pause" class="icon-only" /> Battle';
+                    toggleBtn.innerHTML = '<img id="toggleIcon" src="./img/battle.png" alt="Start/Pause" class="icon-only" /> Battle';
                     round++;
                     prizePot += prizeLevels[currentChain];
                     currentChain = 0;
@@ -1088,10 +1088,10 @@
                 clearInterval(timerInterval);
                 isRunning = false;
                 showAction(`Paused`);
-                toggleBtn.innerHTML = '<img id="toggleIcon" src="/img/battle.png" alt="Start/Pause" class="icon-only" /> Battle';
+                toggleBtn.innerHTML = '<img id="toggleIcon" src="./img/battle.png" alt="Start/Pause" class="icon-only" /> Battle';
             } else {
                 isRunning = true;
-                toggleBtn.innerHTML = '<img id="toggleIcon" src="/img/pause.png" alt="Start/Pause" class="icon-only" /> Pause';
+                toggleBtn.innerHTML = '<img id="toggleIcon" src="./img/pause.png" alt="Start/Pause" class="icon-only" /> Pause';
                 startTimer();
             }
         }
@@ -1100,7 +1100,7 @@
             clearInterval(timerInterval);
             isRunning = false;
             timeLeft = 90;
-            toggleBtn.innerHTML = '<img id="toggleIcon" src="/img/battle.png" alt="Start/Pause" class="icon-only" /> Battle';
+            toggleBtn.innerHTML = '<img id="toggleIcon" src="./img/battle.png" alt="Start/Pause" class="icon-only" /> Battle';
             animateTimerChange();
             showAction(`Reset`);
         }
